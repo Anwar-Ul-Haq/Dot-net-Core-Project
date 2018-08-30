@@ -1,0 +1,9 @@
+{
+  "Colors": {
+    "Favorite": "blue"
+  },
+  "ConnectionStrings": {
+    "DutchConnectionString": "server=.;Database=DutchTreatDb;Integrated Security=true;MultipleActiveREsultSets=true;"
+  }
+}
+

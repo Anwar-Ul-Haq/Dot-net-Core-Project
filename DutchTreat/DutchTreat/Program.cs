@@ -10,16 +10,26 @@ using Microsoft.Extensions.Logging;
 
 namespace DutchTreat
 {
-  public class Program
-  {
-    public static void Main(string[] args)
+    public class Program
     {
-      BuildWebHost(args).Run();
-    }
+        public static void Main(string[] args)
+        {
+            BuildWebHost(args).Run();
+        }
 
-    public static IWebHost BuildWebHost(string[] args) =>
-        WebHost.CreateDefaultBuilder(args)
-            .UseStartup<Startup>()
-            .Build();
-  }
+        public static IWebHost BuildWebHost(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration(SetupConfiguration)
+                .UseStartup<Startup>()
+                .Build();
+
+        private static void SetupConfiguration(WebHostBuilderContext ctx, IConfigurationBuilder builder)
+        {
+            // remove default configuration options
+            builder.Sources.Clear();
+            builder.AddJsonFile("config.json", false, true)
+                
+                .AddEnvironmentVariables();
+        }
+    }
 }
