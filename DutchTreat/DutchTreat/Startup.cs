@@ -27,6 +27,10 @@ namespace DutchTreat
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddDbContext<DutchContex>(cfg => { cfg.UseSqlServer(_config.GetConnectionString("DutchConnectionString")); });
+
+        services.AddTransient<DutchSeeder>();
+
+        services.AddScoped<IDutchRepository,DutchRepository>();
         services.AddMvc();
         services.AddTransient<IMailService, NullMailService>();
     }

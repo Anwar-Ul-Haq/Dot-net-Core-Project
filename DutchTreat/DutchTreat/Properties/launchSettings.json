@@ -16,10 +16,10 @@
       }
     },
     "DutchTreat": {
-      "commandName": "IISExpress",
+      "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Production"
+        "ASPNETCORE_ENVIRONMENT": "DEVELOPMENT"
       },
       "applicationUrl": "http://localhost:28134/"
     }
