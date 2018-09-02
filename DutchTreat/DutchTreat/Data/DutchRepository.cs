@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace DutchTreat.Data
@@ -19,12 +20,31 @@ namespace DutchTreat.Data
             _logger = logger;
         }
 
+        public void AddEntity(object model)
+        {
+            _ctx.Add(model);
+        }
+
+        public IEnumerable<Order> GetAllOrders()
+        {
+            return _ctx.Orders.Include(o=>o.Items)
+                 .ThenInclude(i=>i.Product)
+                .ToList();
+        }
+
         public IEnumerable<Product> GetAllProcuts()
         {
             _logger.LogInformation("GetAllProducts was called");
             return _ctx.Products.OrderBy(p => p.Title).ToList();
         }
 
+        public Order GetOrderById(int id)
+        {
+            return _ctx.Orders
+                .Include(o => o.Items)
+                .ThenInclude(i=>i.Product)
+                .FirstOrDefault(o => o.Id==id);
+        }
 
         public IEnumerable<Product> GetProductsByCategory(string category)
         {

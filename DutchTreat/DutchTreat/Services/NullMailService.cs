@@ -18,6 +18,7 @@ namespace DutchTreat.Services
         public void SendMessage(string to, string subject, string body)
         {
             //Log the message
+            //todo : implement email logic
             _logger.LogInformation($"To:{to} Subject:{subject} Body:{body}");
         }
     }
