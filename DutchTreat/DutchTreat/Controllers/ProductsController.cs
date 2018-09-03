@@ -26,7 +26,7 @@ namespace DutchTreat.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(200)] //reuired if you want to generate api documentation using some tools 
         [ProducesResponseType(400)]
         public ActionResult<IEnumerable<Product>> Get()
         {
